@@ -88,9 +88,8 @@ module "blog_autoscaling" {
   vpc_zone_identifier = module.blog_vpc.public_subnets
 
   launch_template_name = "blog" 
-
   security_groups = [modules.blog_sg.security_group_id]
-  instance_type   = "t3.nano"
+  instance_type   = "var.instance_type"
   image_id        = data.aws_ami.app_ami.id
 
   traffic_source_attachments = {
