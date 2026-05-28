@@ -38,7 +38,7 @@ module "blog_sg" {
   name = "blog"
 
   vpc_id = module.blog_vpc.vpc_id
-  
+
   ingress_rules = ["http-80-tcp","https-443-tcp"]
   ingress_cidr_blocks = ["0.0.0.0/0"]
 
@@ -89,7 +89,7 @@ module "blog_autoscaling" {
 
   launch_template_name = "blog" 
   security_groups = [module.blog_sg.security_group_id]
-  instance_type   = "var.instance_type"
+  instance_type   = var.instance_type
   image_id        = data.aws_ami.app_ami.id
 
   traffic_source_attachments = {
