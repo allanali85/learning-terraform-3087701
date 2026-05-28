@@ -81,13 +81,12 @@ module "blog_autoscaling" {
   source  = "terraform-aws-modules/autoscaling/aws"
   version = "9.2.1"
   name = "blog"
-
   security_groups = [modules.blog_sg.security_group_id]
   instance_type   = "t3.nano"
   image_id        = data.aws_ami.app_ami.id
 
   traffic_source_attachments {
-    blog_alb {
+    blog_alb = {
       traffic_source_identyfier = aws_lb_target_group.blog.arn
     }
   }
