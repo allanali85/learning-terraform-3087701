@@ -85,7 +85,7 @@ module "blog_autoscaling" {
   instance_type   = "t3.nano"
   image_id        = data.aws_ami.app_ami.id
 
-  traffic_source_attachments {
+  traffic_source_attachments = {
     blog_alb = {
       traffic_source_identyfier = aws_lb_target_group.blog.arn
     }
