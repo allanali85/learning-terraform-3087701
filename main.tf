@@ -80,7 +80,6 @@ resource "aws_lb_target_group" "blog" {
 module "blog_autoscaling" {
   source  = "terraform-aws-modules/autoscaling/aws"
   version = "9.2.1"
-
   name = "blog"
 
   security_groups = [modules.blog_sg.security_group_id]
