@@ -81,6 +81,14 @@ module "blog_autoscaling" {
   source  = "terraform-aws-modules/autoscaling/aws"
   version = "9.2.1"
   name = "blog"
+
+  min_size = "1"
+  max_size = "2"
+
+  vpc_zone_identifier = module.blog_vpc.public_subnets
+
+  launch_template_name = "blog" 
+
   security_groups = [modules.blog_sg.security_group_id]
   instance_type   = "t3.nano"
   image_id        = data.aws_ami.app_ami.id
